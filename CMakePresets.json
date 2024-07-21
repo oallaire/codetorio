@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "host",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build-host/"
+    }
+  ]
+}
