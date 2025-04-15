@@ -1,30 +1,28 @@
 #pragma once
 
-#include <memory>
+#include <expected>
 
-#include <item/IItem.h>
-#include <item/IItemRecipe.h>
+#include "connection/IConnectableEntity.h"
+#include "recipe/IRecipe.h"
+#include "types/types.h"
 
 namespace codetorio {
 
-class IFactory {
-public:
-    enum class SetRecipeResult {
-        ACCEPTED,
-        INCOMPATIBLE
-    };
-
-    enum class InsertResult {
-        ACCEPTED,
-        REFUSED,
-        FULL
-    };
-
-    virtual ~IFactory() = default;
-
-    virtual SetRecipeResult setRecipe(const std::shared_ptr<IItemRecipe> &recipe) = 0;
-    virtual InsertResult insertItem(const std::shared_ptr<IItem> &item) = 0;
-    virtual std::shared_ptr<IItem> build() = 0;
+enum class SetRecipeError {
+    ALREADY_SET,
+    LEVEL_TOO_LOW
 };
 
-}// namespace codetorio
+enum class FactoryStatus {
+    IDLE,
+    CRAFTING,
+    FULL
+};
+
+class IFactory : public IConnectableEntity {
+public:
+    virtual level getLevel() const = 0;
+    virtual std::unexpected<SetRecipeError> setRecipe(const std::shared_ptr<IRecipe> &recipe) = 0;
+};
+
+} // codetorio
