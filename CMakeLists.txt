@@ -10,5 +10,6 @@ include(cmake/CPM.cmake)
 CPMAddPackage("gh:Neargye/magic_enum@0.9.7")
 CPMAddPackage("gh:gabime/spdlog@1.15.2")
 
+add_subdirectory(poc)
 add_subdirectory(engine)
 add_subdirectory(examples)
