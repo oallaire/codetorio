@@ -1,5 +1,7 @@
 # codetorio
 
+docker build --build-arg UID=$(id -u) --tag "codetorio" .
+
 ```mermaid
 ---
 title: Fabrication Flow
