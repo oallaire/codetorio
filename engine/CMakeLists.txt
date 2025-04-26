@@ -18,6 +18,8 @@ add_library(${PROJECT_NAME}
         include/explore/ILander.h
         src/log/log.h
         src/log/log.cpp
+        src/connection/Connection.cpp
+        src/connection/Connection.h
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
