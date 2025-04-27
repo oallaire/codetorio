@@ -10,6 +10,7 @@ namespace codetorio {
 enum class ConnectionError {
     ALREADY_CONNECTED,
     TARGET_ALREADY_CONNECTED,
+    TARGET_INVALID
 };
 
 enum class DisconnectionError {

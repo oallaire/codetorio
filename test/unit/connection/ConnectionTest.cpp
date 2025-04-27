@@ -10,6 +10,11 @@ TEST(ConnectionTest, NewConnectionIsNotConnected) {
     ASSERT_EXPECTED_ERROR(c1->getConnection(), GetConnectionError::NOT_CONNECTED);
 }
 
+TEST(ConnectionTest, ConnectToSelf) {
+    auto c1 = std::make_shared<Connection>("", "1");
+    ASSERT_EXPECTED_ERROR(c1->connect(c1), ConnectionError::TARGET_INVALID);
+}
+
 TEST(ConnectionTest, ConnectUnconnectedConnections) {
     auto c1 = std::make_shared<Connection>("", "1");
     auto c2 = std::make_shared<Connection>("", "2");

@@ -11,6 +11,9 @@ expected_void<ConnectionError> Connection::connect(const std::shared_ptr<IConnec
     if (nullptr != endPoint) {
         return validateConnection(connection);
     }
+    if (connection.get() == this) {
+        return std::unexpected(ConnectionError::TARGET_INVALID);
+    }
     if (isConnectedToOther(connection)) {
         return std::unexpected{ConnectionError::TARGET_ALREADY_CONNECTED};
     }
